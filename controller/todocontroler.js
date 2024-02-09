@@ -19,7 +19,7 @@ exports.getTodo = async (req, res) => {
 exports.updateTodo = async (req, res) => {
     try {
         const { id } = req.params
-        Todos.findByIdAndUpdate(id, req.body)
+        await Todos.findByIdAndUpdate(id, req.body)
         res.status(200).json({ message: "update successs" })
     } catch (error) {
         res.status(500).json({ message: error.message || "something went successs" })
@@ -28,8 +28,8 @@ exports.updateTodo = async (req, res) => {
 exports.deleteTodo = async (req, res) => {
     try {
 
-        Todos.findByIdAndUpdate(req.params.id)
-        res.status(200).json({ message: "update successs" })
+        await Todos.findByIdAndDelete(req.params.id)
+        res.status(200).json({ message: "delete successs" })
     } catch (error) {
         res.status(500).json({ message: error.message || "something went successs" })
     }
